@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+:root {
+  font-family: 'Fredoka', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #8be0ff;
+  font-family: 'Fredoka', system-ui, sans-serif;
+}
+
+/* Kid button spring physics */
+.kid-btn {
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease, filter 0.15s ease;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+.kid-btn:active:not(:disabled) {
+  transform: scale(0.92) translateY(4px);
+  filter: brightness(0.96);
+}
+
+.kid-btn:disabled {
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Safe areas */
+.safe-top {
+  padding-top: max(16px, env(safe-area-inset-top));
+}
+.safe-bottom {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+.safe-left {
+  padding-left: max(16px, env(safe-area-inset-left));
+}
+.safe-right {
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-gentle-float {
+  animation: gentle-float 2.5s ease-in-out infinite;
+}
+
+/* Problem bubble wobble */
+@keyframes wobble-pop {
+  0% {
+    transform: scale(0.2) rotate(-10deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.15) rotate(5deg);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(0.96) rotate(-3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.wobble-pop {
+  animation: wobble-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Card slide-up */
+@keyframes card-slide-up {
+  0% {
+    transform: translateY(140%);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.card-slide-up {
+  animation: card-slide-up 0.45s cubic-bezier(0.34, 1.4, 0.64, 1) forwards;
+}
+
+/* Card wrong shake */
+@keyframes card-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-12px) rotate(-3deg); }
+  40% { transform: translateX(12px) rotate(3deg); }
+  60% { transform: translateX(-8px) rotate(-2deg); }
+  80% { transform: translateX(8px) rotate(2deg); }
+}
+
+.card-shake {
+  animation: card-shake 0.45s ease-in-out forwards;
+}
+
+/* Card correct bounce + glow */
+@keyframes card-correct-glow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.8);
+  }
+  50% {
+    transform: scale(1.08) translateY(-6px);
+    box-shadow: 0 0 25px 8px rgba(16, 185, 129, 0.9);
+  }
+  100% {
+    transform: scale(1.03);
+    box-shadow: 0 0 16px 4px rgba(16, 185, 129, 0.7);
+  }
+}
+
+.card-correct-glow {
+  animation: card-correct-glow 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Arrow pulse */
+@keyframes arrow-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+}
+
+.arrow-pulse {
+  animation: arrow-pulse 0.6s infinite ease-in-out;
+}
+
+/* Star pop */
+@keyframes star-pop {
+  0% { transform: scale(0.3) rotate(-30deg); }
+  60% { transform: scale(1.35) rotate(15deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.star-pop {
+  animation: star-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Pulse on last correct card */
+@keyframes pulse-gold {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 16px rgba(245, 158, 11, 0);
+  }
+}
+
+.pulse-correct {
+  animation: pulse-gold 1.4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  border-color: #f59e0b !important;
+}
+
+/* Flying star */
+.flying-star {
+  position: fixed;
+  z-index: 999;
+  pointer-events: none;
+  font-size: 46px;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 4px 10px rgba(245, 158, 11, 0.5));
+}
+
+.sparkle-trail {
+  position: fixed;
+  z-index: 998;
+  pointer-events: none;
+  font-size: 18px;
+  transform: translate(-50%, -50%);
+  animation: trail-fade 0.5s forwards ease-out;
+}
+
+@keyframes trail-fade {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
+}

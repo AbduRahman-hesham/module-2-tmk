@@ -1,0 +1,6 @@
+{
+  "name": "Happy City",
+  "description": "A cute, colorful 3D kids game exploring Happy City with fun hero adventures across 5 districts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
